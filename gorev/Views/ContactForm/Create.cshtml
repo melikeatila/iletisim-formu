@@ -1,0 +1,54 @@
+﻿@model gorev.Models.ContactForm
+
+<h2>İletişim Formu</h2>
+
+<style>
+    form div {
+        margin-bottom: 20px;
+    }
+</style>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label asp-for="AdSoyad">Ad Soyad: </label>
+        <input asp-for="AdSoyad" />
+        <span asp-validation-for="AdSoyad" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Telefon">Telefon: </label>
+        <input asp-for="Telefon" />
+        <span asp-validation-for="Telefon" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="EPosta">E-Posta: </label>
+        <input asp-for="EPosta" type="email" />
+        <span asp-validation-for="EPosta" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Departman">Departman: </label>
+        <select asp-for="Departman">
+            <option value="">Seçiniz</option>
+            <option>Muhasebe</option>
+            <option>Teknik Destek</option>
+            <option>İnsan Kaynakları</option>
+        </select>
+        <span asp-validation-for="Departman" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Mesaj">Mesaj: </label><br />
+        <textarea asp-for="Mesaj"></textarea>
+    </div>
+
+    <button type="submit">Gönder</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
